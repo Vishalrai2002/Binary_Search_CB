@@ -1,0 +1,36 @@
+#include<iostream>
+
+using namespace std;
+
+int main() {
+
+	int A[] = {10, 20, 30, 40, 50};
+	int n = sizeof(A) / sizeof(int);
+
+	int t = 10;
+
+	int s = 0;
+	int e = n-1;
+
+	while(s <= e) {
+		int m = (s+e)/2;
+		if(A[m] == t) {
+			// you've found the target at the index m therefore you can stop
+			cout << "The target element " << t << " is found at index " << m << endl;
+			break;
+		} else if(A[m] > t) {
+			// search space will reduce from [s, e] to [s, m-1]
+			e = m-1;
+		} else {
+			// search space will reduce from [s, e] to [m+1, e]
+			s = m+1;
+		}
+	}
+
+	if(s > e) {
+		cout << "The target element " << t << " is not present in the given array" << endl;
+	}
+
+
+	return 0;
+}
